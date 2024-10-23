@@ -1,17 +1,23 @@
-// import * as cdk from 'aws-cdk-lib';
-// import { Template } from 'aws-cdk-lib/assertions';
-// import * as HealthMessageParser from '../lib/health-message-parser-stack';
+import * as cdk from 'aws-cdk-lib';
+import { Template } from 'aws-cdk-lib/assertions';
+import { HealthMessageParserStack } from '../lib/health-message-parser-stack';
+import { lambdaFunctionName } from '../bin/health-message-parser';
 
-// example test. To run these tests, uncomment this file along with the
-// example resource in lib/health-message-parser-stack.ts
-test('SQS Queue Created', () => {
-//   const app = new cdk.App();
-//     // WHEN
-//   const stack = new HealthMessageParser.HealthMessageParserStack(app, 'MyTestStack');
-//     // THEN
-//   const template = Template.fromStack(stack);
+describe('HealthMessageParserStack', () => {
+  const app = new cdk.App();
+  const stack = new HealthMessageParserStack(app, 'MyTestStack', {
+    functionName: lambdaFunctionName,
+  });
+  const template = Template.fromStack(stack);
 
-//   template.hasResourceProperties('AWS::SQS::Queue', {
-//     VisibilityTimeout: 300
-//   });
+  test('Lambda Function Created', () => {
+    template.hasResourceProperties('AWS::Lambda::Function', {
+      Handler: 'index.default',
+      Runtime: 'nodejs20.x',
+    });
+  });
+
+  test('API Gateway Created', () => {
+    template.resourceCountIs('AWS::ApiGateway::RestApi', 1);
+  });
 });

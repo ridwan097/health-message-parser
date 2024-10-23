@@ -19,7 +19,8 @@
     "strictPropertyInitialization": false,
     "typeRoots": ["./node_modules/@types"],
     "outDir": "./built",
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "types": ["node", "jest", "aws-lambda"]
   },
   "exclude": [
     "node_modules",

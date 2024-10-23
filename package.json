@@ -4,11 +4,16 @@
   "bin": {
     "health-message-parser": "bin/health-message-parser.js"
   },
+  "main": "app.ts",
   "scripts": {
-    "build": "tsc",
+    "start:local": "npm run cdk:synth && npm run start:sam",
+    "start:sam": "sam local start-api -t ./cdk.out/HealthMessageParserStack.template.json",
     "watch": "tsc -w",
     "test": "jest",
-    "cdk": "cdk"
+    "cdk": "cdk",
+    "local": "npx tsc && npx aws-cdk synth && sam local start-api -t ./cdk.out/HealthMessageParserStack.template.json",
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc"
   },
   "devDependencies": {
     "@types/jest": "^29.5.12",
@@ -17,11 +22,14 @@
     "ts-jest": "^29.1.5",
     "aws-cdk": "2.149.0",
     "ts-node": "^10.9.2",
-    "typescript": "~5.5.3"
+    "typescript": "~5.5.3",
+    "aws-lambda": "^1.0.7"
   },
   "dependencies": {
     "aws-cdk-lib": "2.149.0",
     "constructs": "^10.0.0",
-    "source-map-support": "^0.5.21"
+    "source-map-support": "^0.5.21",
+    "dotenv": "^16.4.5",
+    "mongoose": "^8.5.4"
   }
 }

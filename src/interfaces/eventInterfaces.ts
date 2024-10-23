@@ -4,7 +4,7 @@ export interface IParseMessage {
   update(event: IGetMessageEvent): Promise<IResolve | IReject>;
 }
 export interface IEvent {
-  httpMethod?: 'POST' | 'GET' | 'PATCH';
+  httpMethod?: 'POST' | 'GET' | 'PATCH' | 'DELETE';
   body?: any;
   queryStringParameters?: any;
   pathParameters?: any;

@@ -1,19 +1,7 @@
 {
   "register": {
     "path": "parsingHandler.ts",
-    "endPoint": "parse",
+    "endPoint": "process-message",
     "method": "POST"
-  },
-  "getMessageDetails": {
-    "path": "parsingHandler.ts",
-    "endPoint": "parse",
-    "method": "GET",
-    "params": "messageID"
-  },
-  "updateMessageDetails": {
-    "path": "parsingHandler.ts",
-    "endPoint": "parse",
-    "method": "PATCH",
-    "params": "messageID"
   }
 }

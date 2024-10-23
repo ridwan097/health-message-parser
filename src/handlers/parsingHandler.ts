@@ -4,10 +4,10 @@ async function handler(event: any) {
   try {
     let parsingHandler = new ParseMessage();
     switch (event.httpMethod) {
-      // case 'POST':
-      //   return await parsingHandler.parseMessage(event);
-      case 'GET':
-        return await parsingHandler.get(event);
+      case 'POST':
+        return await parsingHandler.processMessage(event);
+      // case 'GET':
+      //   return await parsingHandler.get(event);
       //   case 'PATCH':
       //     return await parsingHandler.parseMessage(event);
       //   case 'DELETE':

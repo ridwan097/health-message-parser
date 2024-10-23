@@ -1,5 +1,5 @@
 export interface IParseMessage {
-  register(event: IRegisterEvent): Promise<IResolve | IReject>;
+  processMessage(event: IParseMessageEvent): Promise<IResolve | IReject>;
   get(event: IGetMessageEvent): Promise<IResolve | IReject>;
   update(event: IGetMessageEvent): Promise<IResolve | IReject>;
 }
@@ -8,6 +8,9 @@ export interface IEvent {
   body?: any;
   queryStringParameters?: any;
   pathParameters?: any;
+  headers?: {
+    origin: string;
+  };
 }
 export interface IResolve {
   statusCode: number;
@@ -18,8 +21,8 @@ export interface IReject {
   statusCode: number;
   headers?: any;
 }
-export interface IRegisterEvent extends IEvent {
-  body: string;
+export interface IParseMessageEvent extends IEvent {
+  body: string | { message: string };
 }
 export interface IGetMessageEvent extends IEvent {
   pathParameters: { messageID: string } | string;

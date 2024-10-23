@@ -13,7 +13,8 @@
     "cdk": "cdk",
     "local": "npx tsc && npx aws-cdk synth && sam local start-api -t ./cdk.out/HealthMessageParserStack.template.json",
     "clean": "rm -rf dist",
-    "build": "npm run clean && tsc"
+    "build": "npm run clean && tsc",
+    "install-all": "npm install && cd src && npm install && cd .."
   },
   "devDependencies": {
     "@aws-cdk/assert": "^2.68.0",
